@@ -4,23 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="mif.mybatis.model.Company" alias="Company"/>
-        <typeAlias type="mif.mybatis.model.Employee" alias="Employee"/>
-        <typeAlias type="mif.mybatis.model.Project" alias="Project"/>
-        <typeAlias type="mif.mybatis.model.EmployeeProject" alias="EmployeeProject"/>
+        <typeAlias type="pkg.mybatis.model.Kindergarden" alias="Kindergarden"/>
+        <typeAlias type="pkg.mybatis.model.Child" alias="Child"/>
+        <typeAlias type="pkg.mybatis.model.Teacher" alias="Teacher"/>
+        <typeAlias type="pkg.mybatis.model.ChildTeacher" alias="ChildTeacher"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="MANAGED"/>
             <dataSource type="JNDI">
-                <property name="data_source" value="openejb:Resource/EmployeesDatasource"/>
+                <property name="data_source" value="openejb:Resource/ChildrenDataSource"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mybatis/xml/CompanyMapper.xml"/>
-        <mapper resource="mybatis/xml/EmployeeMapper.xml"/>
-        <mapper resource="mybatis/xml/EmployeeProjectMapper.xml"/>
-        <mapper resource="mybatis/xml/ProjectMapper.xml"/>
+        <mapper resource="mybatis/xml/KindergardenMapper.xml"/>
+        <mapper resource="mybatis/xml/ChildMapper.xml"/>
+        <mapper resource="mybatis/xml/ChildTeacherMapper.xml"/>
+        <mapper resource="mybatis/xml/TeacherMapper.xml"/>
     </mappers>
 </configuration>

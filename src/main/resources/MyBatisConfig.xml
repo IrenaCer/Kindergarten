@@ -4,24 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="lt.vu.usecases.mybatis.model.Student" alias="Student"/>
-        <typeAlias type="lt.vu.usecases.mybatis.model.Course" alias="Course"/>
-        <typeAlias type="lt.vu.usecases.mybatis.model.University" alias="University"/>
-        <typeAlias type="lt.vu.usecases.mybatis.model.StudentCourse" alias="StudentCourse"/>
+        <typeAlias type="mif.mybatis.model.Company" alias="Company"/>
+        <typeAlias type="mif.mybatis.model.Employee" alias="Employee"/>
+        <typeAlias type="mif.mybatis.model.Project" alias="Project"/>
+        <typeAlias type="mif.mybatis.model.EmployeeProject" alias="EmployeeProject"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="MANAGED"/>
             <dataSource type="JNDI">
-                <!--<property name="data_source" value="java:global/StudentsDataSource"/>-->
-                <property name="data_source" value="openejb:Resource/StudentsDataSource"/>
+                <property name="data_source" value="openejb:Resource/EmployeesDatasource"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mybatis/xml/CourseMapper.xml"/>
-        <mapper resource="mybatis/xml/StudentMapper.xml"/>
-        <mapper resource="mybatis/xml/StudentCourseMapper.xml"/>
-        <mapper resource="mybatis/xml/UniversityMapper.xml"/>
+        <mapper resource="mybatis/xml/CompanyMapper.xml"/>
+        <mapper resource="mybatis/xml/EmployeeMapper.xml"/>
+        <mapper resource="mybatis/xml/EmployeeProjectMapper.xml"/>
+        <mapper resource="mybatis/xml/ProjectMapper.xml"/>
     </mappers>
 </configuration>

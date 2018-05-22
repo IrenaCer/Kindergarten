@@ -4,8 +4,65 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+
+   <h:head>
+
+   </h:head>
+   <h:body>
+      <h:form id="form">
+         <p:dataTable id="kindergardenTable" value="#{useCaseController.kindergardenList}" var="kindergarden">
+            <f:facet name="header">
+               Kindergartens
+            </f:facet>
+            <p:column headerText="Name">
+               <h:outputText value="#{kindergarden.kindergardenName}" />
+            </p:column>
+
+            <p:column headerText="Country">
+               <h:outputText value="#{kindergarden.country}" />
+            </p:column>
+
+            <p:column headerText="Children List">
+               <ui:repeat value="#{kindergarden.childList}" var="child">
+                  #{child.firstName} #{child.lastName}
+               </ui:repeat>
+            </p:column>
+
+         </p:dataTable>
+
+         <h2>Add new kindergarten and child</h2>
+         <table>
+            <tr>
+               <td>
+                  <h:panelGrid columns="3">
+                     <p:outputLabel for="kindergardenName" value="Kindergarten name"/>
+                     <p:inputText id="kindergardenName" value="#{useCaseController.selectedKindergarden.kindergardenName}"/>
+                     <p:message for="kindergardenName"/>
+
+                     <p:outputLabel for="country" value="Country"/>
+                     <p:inputText id="country" value="#{useCaseController.selectedKindergarden.country}"/>
+                     <p:message for="country"/>
+                  </h:panelGrid>
+               </td>
+               <td>
+                  <h:panelGrid columns="3">
+                     <p:outputLabel for="childFirstName" value="First name"/>
+                     <p:inputText id="childFirstName" value="#{useCaseController.selectedChild.firstName}"/>
+                     <p:message for="childFirstName"/>
+
+                     <p:outputLabel for="childLastName" value="Last name"/>
+                     <p:inputText id="childLastName" value="#{useCaseController.selectedChild.lastName}"/>
+                     <p:message for="childLastName"/>
+                  </h:panelGrid>
+               </td>
+            </tr>
+         </table>
+         <p:commandButton value="Create kindergarden"
+                          actionListener="#{useCaseController.createKindergardenAndChild()}"
+                          action="index?faces-redirect=true"
+                          ajax="false"/>
+      </h:form>
+   </h:body>
 </html>

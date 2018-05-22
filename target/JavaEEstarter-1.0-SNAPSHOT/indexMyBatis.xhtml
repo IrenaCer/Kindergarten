@@ -12,7 +12,7 @@
    </h:head>
    <h:body>
       <h:form id="form">
-         <p:dataTable id="kindergardenTable" value="#{useCaseController.kindergardenList}" var="kindergarden">
+         <p:dataTable id="kindergardenTable" value="#{useCaseControllerMyBatis.kindergardenList}" var="kindergarden">
             <f:facet name="header">
                Kindergartens
             </f:facet>
@@ -38,29 +38,29 @@
                <td>
                   <h:panelGrid columns="3">
                      <p:outputLabel for="kindergardenName" value="Kindergarten name"/>
-                     <p:inputText id="kindergardenName" value="#{useCaseController.selectedKindergarden.kindergardenName}"/>
+                     <p:inputText id="kindergardenName" value="#{useCaseControllerMyBatis.selectedKindergarden.kindergardenName}"/>
                      <p:message for="kindergardenName"/>
 
                      <p:outputLabel for="country" value="Country"/>
-                     <p:inputText id="country" value="#{useCaseController.selectedKindergarden.country}"/>
+                     <p:inputText id="country" value="#{useCaseControllerMyBatis.selectedKindergarden.country}"/>
                      <p:message for="country"/>
                   </h:panelGrid>
                </td>
                <td>
                   <h:panelGrid columns="3">
                      <p:outputLabel for="childFirstName" value="First name"/>
-                     <p:inputText id="childFirstName" value="#{useCaseController.selectedChild.firstName}"/>
+                     <p:inputText id="childFirstName" value="#{useCaseControllerMyBatis.selectedChild.firstName}"/>
                      <p:message for="childFirstName"/>
 
                      <p:outputLabel for="childLastName" value="Last name"/>
-                     <p:inputText id="childLastName" value="#{useCaseController.selectedChild.lastName}"/>
+                     <p:inputText id="childLastName" value="#{useCaseControllerMyBatis.selectedChild.lastName}"/>
                      <p:message for="childLastName"/>
                   </h:panelGrid>
                </td>
             </tr>
          </table>
          <p:commandButton value="Create kindergarten"
-                          actionListener="#{useCaseController.createKindergardenAndChild()}"
+                          actionListener="#{useCaseControllerMyBatis.createKindergardenAndChild()}"
                           action="index?faces-redirect=true"
                           ajax="false"/>
       </h:form>

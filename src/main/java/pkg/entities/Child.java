@@ -37,6 +37,10 @@ public class Child {
     @JohnzonIgnore
     private Kindergarden kindergarden;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer optLockVersion;
+
     @JoinTable(name = "CHILD_TEACHER", joinColumns = {
             @JoinColumn(name = "CHILD_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
             @JoinColumn(name = "TEACHER_ID", referencedColumnName = "ID")})
@@ -44,3 +48,4 @@ public class Child {
     @JohnzonIgnore
     private List<Teacher> teacherList;
 }
+//wasd

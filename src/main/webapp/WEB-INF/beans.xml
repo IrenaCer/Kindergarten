@@ -5,4 +5,17 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
                       http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
     bean-discovery-mode="all">
+    <alternatives>
+        <class>pkg.glassbox.Duck</class>
+    </alternatives>
+    <decorators>
+        <class>
+            pkg.glassbox.Decorator
+        </class>
+    </decorators>
+    <interceptors>
+        <class>
+            pkg.glassbox.TheInterceptor
+        </class>
+    </interceptors>
 </beans>

@@ -15,6 +15,10 @@ public class ChildDAO {
     public void create(Child child) {
         em.persist(child);
     }
+    public void updateAndFlush(Child child) {
+        em.merge(child);
+        em.flush();
+    }
     public List<Child> getAllChildren() {
         return em.createNamedQuery("Child.findAll", Child.class).getResultList();
     }

@@ -8,9 +8,11 @@ import pkg.dao.KindergardenDAO;
 import pkg.dao.ChildDAO;
 import pkg.entities.Child;
 import pkg.entities.Child;
+import pkg.glassbox.IToy;
 
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,8 +21,12 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class UseCaseController implements Serializable {
+
+    @Inject
+    @Getter
+    private IToy toy;
 
     @Getter
     private List<Kindergarden> kindergardenList;

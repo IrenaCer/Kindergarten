@@ -1,4 +1,3 @@
-///*
 //package pkg.controllers;
 //
 //import lombok.Getter;
@@ -16,7 +15,7 @@
 //import java.util.List;
 //
 //@Model
-//public class UseCaseControllerMybatis implements Serializable {
+//public class UseCaseControllerMyBatis implements Serializable {
 //
 //    @Getter
 //    private List<Kindergarden> kindergardenList;
@@ -55,4 +54,4 @@
 //        kindergardenList = kindergardenMapper.selectAll();
 //    }
 //}
-//*/
+//

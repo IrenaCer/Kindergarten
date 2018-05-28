@@ -19,12 +19,15 @@
         
         <table schema="public" tableName="kindergarden">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+            <ignoreColumn column="opt_lock_version" />
         </table>
         <table schema="public" tableName="child">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+            <ignoreColumn column="opt_lock_version" />
         </table>
         <table schema="public" tableName="teacher">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+            <ignoreColumn column="opt_lock_version" />
         </table>
         <table schema="public" tableName="child_teacher">
         </table>

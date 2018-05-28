@@ -26,7 +26,7 @@ public class Controller {
     }
 
     @Path("/create")
-    @POST
+    @PUT
     @Transactional
     public Child create(
             @QueryParam("firstName") String firstName,
@@ -40,7 +40,7 @@ public class Controller {
     }
 
     @Path("/update/{id}")
-    @PUT @Transactional
+    @POST @Transactional
     public Response update(@PathParam("id") Integer id,
                            @QueryParam("firstName") String firstName,
                            @QueryParam("lastName") String lastName) {

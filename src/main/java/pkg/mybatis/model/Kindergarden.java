@@ -1,4 +1,5 @@
 package pkg.mybatis.model;
+import java.util.List;
 
 public class Kindergarden {
     /**

@@ -23,13 +23,6 @@
             <p:column headerText="Country">
                <h:outputText value="#{kindergarden.country}" />
             </p:column>
-
-            <p:column headerText="Children List">
-               <ui:repeat value="#{kindergarden.childList}" var="child">
-                  #{child.firstName} #{child.lastName}
-               </ui:repeat>
-            </p:column>
-
          </p:dataTable>
 
          <h2>Add new kindergarten and child</h2>
@@ -44,17 +37,6 @@
                      <p:outputLabel for="country" value="Country"/>
                      <p:inputText id="country" value="#{useCaseControllerMyBatis.selectedKindergarden.country}"/>
                      <p:message for="country"/>
-                  </h:panelGrid>
-               </td>
-               <td>
-                  <h:panelGrid columns="3">
-                     <p:outputLabel for="childFirstName" value="First name"/>
-                     <p:inputText id="childFirstName" value="#{useCaseControllerMyBatis.selectedChild.firstName}"/>
-                     <p:message for="childFirstName"/>
-
-                     <p:outputLabel for="childLastName" value="Last name"/>
-                     <p:inputText id="childLastName" value="#{useCaseControllerMyBatis.selectedChild.lastName}"/>
-                     <p:message for="childLastName"/>
                   </h:panelGrid>
                </td>
             </tr>

@@ -19,16 +19,13 @@ public class CompA implements Serializable {
     public String callAsyncMethod() throws ExecutionException, InterruptedException {
         if (resultInFuture == null) {
             resultInFuture = compB.asyncMethod();
-            return "I just have called CompB. Result is ready? " + resultInFuture.isDone();
-        } else {
-            if (resultInFuture.isDone()) {
-                String result = resultInFuture.get();
-                resultInFuture = null;
-                return "Result is finally ready, and it is: " + result;
-            } else {
-                return "Result is not yet ready... please wait a moment...";
-            }
+        } else if (resultInFuture.isDone()) {
+            String result = resultInFuture.get();
+            resultInFuture = null;
+            return "Result is finally ready, and it is: " + result;
         }
+
+        return "Result is not yet ready... please wait a moment...";
     }
 
 }

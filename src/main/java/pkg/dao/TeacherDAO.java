@@ -12,6 +12,10 @@ public class TeacherDAO {
     @Inject
     private EntityManager em;
 
+    public void create(Teacher teacher) {
+        em.persist(teacher);
+    }
+
     public List<Teacher> getAllTeachers() {
         return em.createNamedQuery("Teacher.findAll", Teacher.class).getResultList();
     }

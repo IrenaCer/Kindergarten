@@ -11,7 +11,7 @@ import java.util.List;
 public class KindergardenDAO {
     @Inject
     private EntityManager em;
-
+//comm
     public void create(Kindergarden kindergarden) {
         em.persist(kindergarden);
     }

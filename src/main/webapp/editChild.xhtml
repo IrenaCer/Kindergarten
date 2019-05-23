@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head>
+    <title>Edit Child with Optimistic Locking</title>
+</h:head>
+
+<h:body>
+    <h1>Edit Child with Optimistic Locking</h1>
+
+    <h:form id="form">
+        <p:fieldset id="list" style="width: 50%">
+            <f:facet name="legend">
+                All children
+                <p:commandButton value="Refresh" icon="ui-icon-arrowrefresh-1-e"
+                                 actionListener="#{editChildUseCaseController.reloadAll}"
+                                 update=":form:list"/>
+            </f:facet>
+
+            <p:dataTable value="#{editChildUseCaseController.allChildren}" var="child" tableStyle="table-layout: auto">
+                <p:column headerText="Child">
+                    #{child.firstName} #{child.lastName}
+                </p:column>
+                <p:column headerText="Kindergarten">
+                    #{child.kindergarden.kindergardenName}
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Edit" icon="ui-icon-pencil"
+                                     actionListener="#{editChildUseCaseController.prepareForEditing(child)}"
+                                     update=":form:childDetail"
+                                     oncomplete="PF('childDialog').show()" />
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+
+        <p:dialog header="Edit Child" widgetVar="childDialog" modal="true" closable="true" resizable="false" closeOnEscape="true">
+            <p:outputPanel id="childDetail">
+                <h:outputText value="No child was selected" rendered="#{empty editChildUseCaseController.selectedChild}" />
+                <p:panelGrid  columns="3" rendered="#{not empty editChildUseCaseController.selectedChild}"
+                              columnClasses="label,value" styleClass="ui-noborder">
+                    <p:outputLabel for="firstName" value="First name:"/>
+                    <p:inputText id="firstName" value="#{editChildUseCaseController.selectedChild.firstName}"/>
+                    <p:message for="firstName"/>
+
+                    <p:outputLabel for="lastName" value="Last name:"/>
+                    <p:inputText id="lastName" value="#{editChildUseCaseController.selectedChild.lastName}"/>
+                    <p:message for="lastName"/>
+
+                    <p:outputLabel for="kindergarden" value="Kindergarten:"/>
+                    <p:selectOneMenu id="kindergarden" value="#{editChildUseCaseController.selectedChild.kindergarden}"
+                                     converter="omnifaces.SelectItemsIndexConverter">
+                        <f:selectItem itemLabel="Select kindergarten:" itemValue="#{null}"/>
+                        <f:selectItems value="#{editChildUseCaseController.allKindergardens}" var="kindergarden"
+                                       itemLabel="#{kindergarden.kindergardenName}" itemValue="#{kindergarden}"/>
+                    </p:selectOneMenu>
+                    <p:message for="kindergarden"/>
+
+                    <h:outputText value="Opt. version:" />
+                    <h:outputText value="#{editChildUseCaseController.selectedChild.optLockVersion}" style="font-weight: bold"/>
+                </p:panelGrid>
+
+                <p:commandButton value="Update" actionListener="#{editChildUseCaseController.updateSelectedChild}"
+                                 rendered="#{empty editChildUseCaseController.conflictingChild}"
+                                 icon="ui-icon-check" style="margin-top: 1em"
+                                 update=":form:childDetail :form:list"
+                                 oncomplete="if (args &amp;&amp; !args.validationFailed) PF('childDialog').hide()" />
+
+                <p:panelGrid  columns="2" rendered="#{not empty editChildUseCaseController.conflictingChild}"
+                              columnClasses="label,value" styleClass="ui-noborder" style="margin-top: 1em">
+                    <f:facet name="header">Conflicting child</f:facet>
+
+                    <h:outputText value="First name:"/>
+                    <h:outputText value="#{editChildUseCaseController.conflictingChild.firstName}"/>
+
+                    <h:outputText value="Last name:"/>
+                    <h:outputText value="#{editChildUseCaseController.conflictingChild.lastName}"/>
+
+                    <h:outputText value="Kindergarten:"/>
+                    <h:outputText value="#{editChildUseCaseController.conflictingChild.kindergarden.kindergardenName}" />
+
+                    <h:outputText value="Opt. version:" />
+                    <h:outputText value="#{editChildUseCaseController.conflictingChild.optLockVersion}" style="font-weight: bold"/>
+                </p:panelGrid>
+
+                <p:commandButton value="Overwrite" actionListener="#{editChildUseCaseController.overwriteChild}"
+                                 rendered="#{not empty editChildUseCaseController.conflictingChild}"
+                                 icon="ui-icon-notice" style="margin-top: 1em"
+                                 update=":form:childDetail :form:list"
+                                 oncomplete="if (args &amp;&amp; !args.validationFailed) PF('childDialog').hide()" />
+            </p:outputPanel>
+        </p:dialog>
+
+        <p:messages globalOnly="true"/>
+    </h:form>
+
+</h:body>
+</html>
+

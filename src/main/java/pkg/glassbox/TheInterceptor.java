@@ -3,10 +3,11 @@ package pkg.glassbox;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
+import java.io.Serializable;
 
 @Interceptor
 @IInterceptor
-public class TheInterceptor {
+public class TheInterceptor implements Serializable {
 
     @AroundInvoke
     public Object log(InvocationContext ctx) throws Exception {
